@@ -1,0 +1,10 @@
+version: "3"
+services:
+  mongodb-seed:
+   container_name: mongodb-seed
+   build: ./data
+   command: mongoimport --host mongodb:27017 --db listing --drop --type csv --file /data/listing-details.csv --headerline
+   depends_on:
+     - mongodb
+
+ 

@@ -1,0 +1,49 @@
+{
+  "name": "listing-details",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:roisagiv/opendoor-backend-take-home-challenge.git",
+  "author": "Roi Sagiv",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "nodemon": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' ./src/index.ts",
+    "test": "jest",
+    "test:docker": "jest --watchAll --runInBand",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "tslint:check": "tslint-config-prettier-check ./tslint.json",
+    "docker:up": "docker-compose up",
+    "docker:rebuild": "npm run docker:up -- --build --force-recreate",
+    "docker:seed": "docker-compose -f docker-compose.yml -f docker-compose.seed.yml up",
+    "docker:admin": "docker-compose -f docker-compose.yml -f docker-compose.admin.yml up",
+    "docker:test": "docker-compose -f docker-compose.yml -f docker-compose.test.yml -f docker-compose.admin.yml up",
+    "docker:test:rebuild": "npm run docker:test -- --build --force-recreate"
+  },
+  "devDependencies": {
+    "@mapbox/geojsonhint": "2.1.0",
+    "@types/debug": "0.0.30",
+    "@types/jest": "23.3.1",
+    "@types/koa": "2.0.46",
+    "@types/koa-router": "7.0.31",
+    "@types/mongoose": "5.2.5",
+    "@types/supertest": "2.0.5",
+    "concurrently": "3.6.1",
+    "jest": "23.5.0",
+    "nodemon": "1.18.3",
+    "prettier": "1.14.2",
+    "supertest": "3.1.0",
+    "ts-jest": "23.1.3",
+    "ts-node": "7.0.1",
+    "tslint": "5.11.0",
+    "tslint-config-airbnb": "5.9.2",
+    "tslint-config-prettier": "1.14.0",
+    "typescript": "3.0.1"
+  },
+  "dependencies": {
+    "debug": "3.1.0",
+    "koa": "2.5.2",
+    "koa-router": "7.4.0",
+    "mongoose": "5.2.8",
+    "winston": "3.0.0"
+  }
+}

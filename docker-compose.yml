@@ -1,0 +1,36 @@
+version: "3"
+services:
+  app:
+    container_name: app
+    command: npm run nodemon
+    restart: always
+    build: .
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+     - mongodb
+    environment:
+      - PORT=3000
+      - MONGODB_URI=mongodb://mongodb:27017/listing 
+  
+  mongodb:
+    container_name: mongodb
+    image: mongo:4.1.1
+    ports: 
+      - "27017:27017"
+    volumes:
+      - data-volume:/data/db
+    logging:
+      driver: "none"
+    healthcheck:
+      test:
+      - CMD
+      - mongo
+      - --eval
+      - "db.adminCommand('ping')"
+
+volumes:
+  data-volume:
